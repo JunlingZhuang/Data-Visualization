@@ -41,9 +41,9 @@
 			    .enter()
 			    .append("circle");
 
-			circles.attr("cx", function(d, i) {
+			circles.attr("cx", function(d, i, distance) {
             //change distance here
-						return (i * 50) + 25;
+						return (i * 50) + d["distance"];
 					})
 				   .attr("cy", h/2)
 				   .attr("r", function(d) {

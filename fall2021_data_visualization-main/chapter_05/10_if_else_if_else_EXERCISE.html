@@ -14,7 +14,7 @@
                dataset.push(i);
             }
             //you can uncomment the line below to see this data printed out to your javascript console
-            //console.log(dataset)
+            console.log(dataset)
             
 			
             //YOUR ASSIGNMENT STARTS HERE: now you will make a function to change the color of the text
@@ -33,7 +33,16 @@
 					return d;
 				})
 				.style("color", function(d) {
-                    return "red"
+                    if ( d % 3 == 5){
+                        return "red"
+                    }else if (d  % 3 == 0){
+                        return "blue"
+                    }else if( d % 3 == 0 || d % 5 == 0){
+                        return "green"
+                    }else{
+                        return "black"
+                    }
+                    
                     //YOUR CODE WILL BE HERE
                     //
                     

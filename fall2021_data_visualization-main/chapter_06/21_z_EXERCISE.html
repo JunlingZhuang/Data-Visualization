@@ -30,20 +30,39 @@
 			   .append("rect")
                 //HINT: start by switching the x and y values with eachother, and the width and height values with eachother. 
                         //then adjust the y values such that they align on the bottom.
-			   .attr("y", function(d, i) {
-			   		return i*20
+			   .attr("y", function(d) {
+			   		return 200 - d/2
 			   })
-			   .attr("x", function(d) {
-			   		return 0
+			   .attr("x", function(d, i) {
+			   		return i * 200 / (dataset.length);
 			   })
-			   .attr("height", 10)
-			   .attr("width", function(d) {
+			   .attr("width", 15) 
+
+			   .attr("height", function(d) {
 			   		return d
 			   })
 			   .attr("fill", function(d) {
-					return "rgb(0, 0, " + Math.round(d * 10) + ")";
+					return "rgb(0, " + Math.round(d * 6)+ ", 0)";
 			   })
          .attr("opacity",.5);
+
+		 svg.selectAll("text")
+			   .data(dataset)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+					return d;
+			   })
+			   .attr("text-anchor","middle")
+			   .attr("x",function(d, i) {
+					return i * 200 / (dataset.length) + 15/2;
+			   })
+			   .attr("y",function(d){
+					return 200 - d/2 + 7;
+			   })
+			   .attr("font-family","sans-serif")
+			   .attr("font-size","6px")
+			   .attr("fill","white");
 		
 
 
