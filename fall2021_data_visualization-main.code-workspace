@@ -6,5 +6,8 @@
 		{
 			"path": "../design-ai1"
 		}
-	]
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "fall2021_data_visualization-main"
+	}
 }
