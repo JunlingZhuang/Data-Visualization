@@ -178,19 +178,36 @@
 					//
 					//Exercise: Modify this code to add and remove the correct labels each time!
 					//
-					svg.selectAll("text")
-					   .data(dataset, key)
+					var text = svg.selectAll("text")
+						.data(dataset, key);
+
+  					
+					text.enter()
+						.append("text")
+						.text(function(d) {
+							return d.value;
+						})
+						.attr("text-anchor", "middle")
+						.attr("x", w)
+						.attr("y", function(d) {
+							return h - yScale(d.value) + 14;
+						})						
+					   .attr("font-family", "sans-serif")
+					   .attr("font-size", "11px")
+					   .attr("fill", "white")
+					   .merge(text)	//Update…
 					   .transition()
 					   .duration(500)
-					   .text(function(d) {
-					   		return d.value;
-					   })
 					   .attr("x", function(d, i) {
 							return xScale(i) + xScale.bandwidth() / 2;
-					   })
-					   .attr("y", function(d) {
-							return h - yScale(d.value) + 14;
 					   });
+					
+					   text.exit()
+  						.transition()
+  						.duration(500)
+  						.attr("x", -xScale.bandwidth())
+  						.remove();
+					
 
 				});
 

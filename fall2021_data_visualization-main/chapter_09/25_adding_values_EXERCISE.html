@@ -128,7 +128,30 @@
 						.attr("height", function(d) {			//Set new height value, based on the updated yScale
 							return yScale(d);
 						});
-
+					
+					var texts = svg.selectAll("text")
+						.data(dataset);
+						
+					texts.enter()
+						.append("text")
+						.text(function(d) {
+							return d;
+						})
+						.attr("x", w)
+						.attr("y", function(d) {
+							return h - yScale(d) + 14;
+						})
+						.merge(texts)
+						.transition()
+						.duration(500)
+						.attr("x", function(d, i) {
+							return xScale(i) + xScale.bandwidth() / 2;
+						})
+						.attr("text-anchor", "middle")
+						.attr("font-family", "sans-serif")
+						.attr("font-size", "11px")
+						.attr("fill", "white");
+									
 						//TODO: add code here to update the labels
 						//HINT: everything you need for updating the labels is in the updating bars code above.
 				});

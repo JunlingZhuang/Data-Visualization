@@ -85,23 +85,18 @@
 				.on("click", function() {
 					//Update all rects
 					svg.selectAll("rect")
-					   .data(dataset)
-					   .transition()
-					   .delay(1000)					// <-- A static, 1s delay before transition begins
-					   .duration(2000)
-          			   .attr("x", function(d) {
-                           //TODO
-          			   })
-         			   .attr("y", function(d, i) {
-                           //TODO
-         			   })
-			           .attr("height", function(d){
-                           //TODO
-			           })
+						.data(dataset)
+					   	.transition()
+					   	.delay(1000)					// <-- A static, 1s delay before transition begins
+					   	.duration(2000)
+          			   	.attr("x", xScale(0))
+         			   	.attr("y", function(d, i) {
+                           return xScale(i);
+         			   	})
+			           .attr("height", xScale.bandwidth())
 					   .attr("width", function(d) {
-                           //TODO
+                           return yScale(d);
 					   })
-
 					//Update all labels
 					svg.selectAll("text")
 					   .data(dataset)
@@ -111,11 +106,10 @@
 					   .text(function(d) {
 					   		return d;
 					   })
-					   .attr("x", function(d, i) {
-                           //TODO
-					   })
+					   .attr("text-anchor", "middle")
+					   .attr("x", xScale(0)+20)
 					   .attr("y", function(d,i) {
-                           //TODO
+                            return xScale(i) + xScale.bandwidth() / 2 + 4;
 					   });
 					   				
 				});

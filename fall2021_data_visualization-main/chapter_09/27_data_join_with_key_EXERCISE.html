@@ -160,8 +160,12 @@
 					//
 					//Exercise: Modify this code to remove the correct label each time!
 					//
-					svg.selectAll("text")
-					   .data(dataset, key)		//Bind data with custom key function
+					var text = svg.selectAll("text")
+						.data(dataset, key)
+
+					text.enter()
+					   .append("text")
+					   .merge(text)		       //Bind data with custom key function
 					   .transition()
 					   .duration(500)
 					   .text(function(d) {
@@ -172,7 +176,13 @@
 					   })
 					   .attr("y", function(d) {
 							return h - yScale(d.value) + 14;
-					   });
+					   })
+					   
+					text.exit()
+					.transition()
+					.duration(500)
+					.attr("x", -xScale.bandwidth())
+					.remove();
 
 				});
 
