@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style-1.css">
+    <script src="https://d3js.org/d3.v4.min.js"> </script>   
+	
+
+
+
+</head>  
+<body> 
+
+<!--top bar title and zoom level-->
+
+	<div id="sapper">
+		<div class="aspect svelte-13hb6i8">
+			<header class="svelte-bt9yf6">
+				<div class="title svelte-bt9yf6">
+<!--title-->
+					<h1 class="svelte-bt9yf6">bluedot</h1>
+				</div>
+				<div class="meta svelte-bt9yf6">
+<!--zoom level-->
+<!-- QUESTION 1: how can I connect the zoom class to the d3.zoom function?-->
+					<h3 class="zoom"> ZL00</h3>
+				</div>
+			</header>
+
+
+
+
+			<div id="GFG">
+			<div>
+				<h2 class="svelte-bt9yf6">text ZL00</h2>
+			</div>
+
+			
+			<script>
+
+// d3.zoom
+
+// QUESTION 2: I want the blue dot to be fixed in the center of the screen (no pan or move in the canvas, only zoom in and out). 
+//I've found this code (https://bl.ocks.org/mbostock/f2728977cc50761897f83323a8ea5000) I tried but I'm not able to implement mine, I think I have to fix the "translate".
+				
+				var header = - 69.5 - 48 // you can update this to pull the header size at load
+
+				var svg = d3.select("#GFG")
+					.append("svg")
+					// .attr("width", 1920)
+					// .attr("height", 1080)
+					.attr("width", window.innerWidth)
+					.attr("height", window.innerHeight - header)
+					.call(d3.zoom() .on("zoom", function () {
+					svg.attr("transform", d3.event.transform);
+					var chk = d3.select("h3")
+						.text(d3.event.transform.k)	
+
+					}))
+
+					//below is disabling panning
+					.on("mousedown.zoom", null)
+					.on("touchstart.zoom", null)
+					.on("touchmove.zoom", null)
+					.on("touchend.zoom", null)
+					.append("g")
+
+				svg
+					.append("circle")
+					// .attr("cx", 500)
+					// .attr("cy", 500)
+					.attr("cx", window.innerWidth / 2)
+					.attr("cy", (window.innerHeight - header)/2)
+					.attr("r", 40)
+					.style ("fill", "#4285F4")
+					.style ("stroke", "#FFFFFF")
+					.style("stroke-width", 5)
+					
+
+
+						
+
+// QUESTION 3: I would like that, instead of the button, the text could change according to the zoom level (I think it's the "scale" parameter of the d3.zoom function)			
+                function handleZoom(e){
+                let zoom = d3.zoom()
+                .on('zoom', handleZoom);
+
+                var chk = d3.select("h2")
+
+				.text("text ZL01");			    
+				var text = document.querySelector("h2");
+			}
+			let btn = document.querySelector("h2");
+			btn.addEventListener("click", handleZoom);
+
+
+			</script> 
+        </div>
+		</div>
+	</div>
+</body> 
+</html> 

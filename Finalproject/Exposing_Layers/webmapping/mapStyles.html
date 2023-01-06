@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Change a layer's color with buttons</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<style>
+    .map-overlay {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        position: absolute;
+        width: 200px;
+        top: 0;
+        left: 0;
+        padding: 10px;
+    }
+
+    .map-overlay .map-overlay-inner {
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .map-overlay-inner fieldset {
+        border: none;
+        padding: 0;
+        margin: 0 0 10px;
+    }
+
+    .map-overlay-inner fieldset:last-child {
+        margin: 0;
+    }
+
+    .map-overlay-inner select {
+        width: 100%;
+    }
+
+    .map-overlay-inner label {
+        display: block;
+        font-weight: bold;
+        margin: 0 0 5px;
+    }
+
+    .map-overlay-inner button {
+        display: inline-block;
+        width: 36px;
+        height: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .map-overlay-inner button:focus {
+        outline: none;
+    }
+
+    .map-overlay-inner button:hover {
+        box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div id="map"></div>
+<div class="map-overlay top">
+    <div class="map-overlay-inner">
+        <fieldset>
+            <label>Select layer</label>
+            <select id="layer" name="layer">
+                <!-- Each value matches a layer ID. -->
+                <option value="water">Water</option>
+                <option value="building">Buildings</option>
+                <option value="triangles">Triangles</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <label>Choose a color</label>
+            <div id="swatches"></div>
+        </fieldset>
+    </div>
+</div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiampqaWlhMTIzIiwiYSI6ImNpbDQ0Z2s1OTN1N3R1eWtzNTVrd29lMDIifQ.gSWjNbBSpIFzDXU2X5YCiQ';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/light-v11', // style URL for Mapbox Light
+        center: [12.338, 45.4385],
+        zoom: 18
+    });
+
+    map.on('load', () => {
+        // Add a custom layer that uses
+        // a vector tileset source.
+        map.addLayer({
+            id: 'triangles',
+            source: {
+                type: 'vector',
+                url: 'mapbox://examples.ckv9z0wgf5v7c27p7me2mf0l9-9wrve' // custom tileset
+            },
+            'source-layer': 'triangles',
+            type: 'fill'
+        });
+		
+		
+		
+		//Here is the color change that uses zoom instead of using the buttons in the example
+		map.on("move",()=>{
+				var currentZoom = map.getZoom()
+					console.log(currentZoom)
+					if(currentZoom>16 && currentZoom<=18){
+						//TODO use a json and make a loop here for each layer you need to change
+			            map.setPaintProperty("water", 'fill-color', "red");
+			            map.setPaintProperty("building", 'fill-color', "pink");
+			            map.setPaintProperty("triangles", 'fill-color', "blue");
+					}
+	
+					if(currentZoom<14 && currentZoom<=16){
+			            map.setPaintProperty(layer.value, 'fill-color', "green");
+					}
+					if(currentZoom>10 && currentZoom<=14){
+			            map.setPaintProperty(layer.value, 'fill-color', "gold");
+					}
+			
+				})
+
+		
+    });
+
+    const swatches = document.getElementById('swatches');
+    const layer = document.getElementById('layer');
+    const colors = [
+        '#ffffcc',
+        '#a1dab4',
+        '#41b6c4',
+        '#2c7fb8',
+        '#253494',
+        '#fed976',
+        '#feb24c',
+        '#fd8d3c',
+        '#f03b20',
+        '#bd0026'
+    ];
+
+    for (const color of colors) {
+        const swatch = document.createElement('button');
+        swatch.style.backgroundColor = color;
+        swatch.addEventListener('click', () => {
+            map.setPaintProperty(layer.value, 'fill-color', color);
+        });
+        swatches.appendChild(swatch);
+    }
+</script>
+
+</body>
+</html>

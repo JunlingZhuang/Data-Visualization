@@ -1,0 +1,284 @@
+/* #map { position:absolute; top: 20; bottom: 0; width: 100%; height: 100%;} */
+/* #map { position: absolute; top: 0; bottom: 0; width: 100%; } */
+#map {height: 100%;z-index: 2;}
+
+
+:root {
+  --asideWidth:20%;
+  --borderThick: 2px;
+  
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  
+  background: rgb(0, 0, 0);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  margin: 5px;
+  background: rgb(0, 0, 0);
+  border: var(--borderThick) solid #000000;
+  height: 15vh;
+}
+header:hover {
+  border-color: white;
+  
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+li a {
+  text-decoration: none;
+  color: white;
+  
+}
+
+h1 {
+  display: block;
+  font-size: 1.8em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  color:white;
+}
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  color:white;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  color:white;
+}
+h4 {
+  display: block;
+  font-size: 1em;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight:lighter;
+  color:white;
+
+}
+main {
+  display: flex;
+  height: 90vh;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 5px;
+  background: rgb(0, 0, 0);
+  border: var(--borderThick) solid #000000;
+}
+section:hover {
+  border-color: white;
+  
+}
+.mapbox_container {
+  margin: 10px;
+  height: 100%;
+  
+}
+
+
+.form_container {
+  height: 0%;
+}
+
+.left_aside {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 5px;
+  width: var(--asideWidth);
+  background: rgb(0, 0, 0);
+  border: var(--borderThick) solid #000000;
+}
+.primaryInfo_container{
+  margin: 10px;
+  height:30%;
+  background: rgb(0, 0, 0);
+
+}
+.description_container{
+  margin: 10px;
+  height:30%;
+  background: rgb(0, 0, 0);
+
+}
+.video_container{
+  height: 30%;
+  background: rgb(0, 0, 0);
+  text-align: center;
+}
+
+video {
+  /* override other styles to make responsive */
+  width: 98%    !important;
+  height: auto   !important;
+}
+.right_aside {
+  margin: 5px;
+  width: var(--asideWidth);
+  background: rgb(0, 0, 0);
+  border: var(--borderThick) solid #000000;
+}
+aside:hover {
+  border-color: white;
+  
+}
+
+
+button {
+  width: 30%;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.modal_wrapper {
+  display: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.5)
+}
+
+@media (max-width: 450px) {
+  header {
+    background: blue;
+  }
+
+  aside {
+    width: 100%;
+    height: 20%;
+  }
+
+
+
+  main {
+    flex-direction: column;
+  }
+
+  .image_container {
+    width: 100vw;
+    height: 40vh;
+  }
+  .form_container {
+    width: 100vw;
+    height: 40vh;
+  }
+
+} 
+
+
+
+.map-overlay {
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  position: absolute;
+  width: 200px;
+  top: 30px;
+  left: 0;
+  padding: 10px;
+  z-index: 3;
+}
+
+.map-overlay .map-overlay-inner {
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.map-overlay-inner fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.map-overlay-inner fieldset:last-child {
+  margin: 0;
+}
+
+.map-overlay-inner select {
+  width: 100%;
+}
+
+.map-overlay-inner label {
+  display: block;
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+
+.map-overlay-inner button {
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.map-overlay-inner button:focus {
+  outline: none;
+}
+
+.map-overlay-inner button:hover {
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+
+/* mouse pointer */
+#info {
+  display: table;
+  position: relative;
+  margin: 0px auto;
+  word-wrap: anywhere;
+  white-space: pre-wrap;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #222;
+  background: #fff;
+  }

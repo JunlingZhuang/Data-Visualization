@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="intro.css">
+</head>
+<body>
+<!--top bar title and zoom level-->
+
+<div id="sapper">
+    <div class="aspect svelte-13hb6i8">
+        <header class="svelte-bt9yf6">
+            <div class="title_svelte-bt9yf6">
+<!--title-->
+                <h1 class="svelte-bt9yf6">bluedot</h1>
+            </div>
+            <div class="meta svelte-bt9yf6">
+<!--zoom level-->
+<!-- QUESTION 1: how can I connect the zoom class to the d3.zoom function?-->
+                <h3 class="zoom"> ZL00</h3>
+            </div>
+            
+            
+        </header>
+
+        <header class="svelte-bt9yf6-2">
+        <div>
+            <h2 class="svelte-bt9yf6"></h2>
+        </div>
+        </header>
+
+        <header class="svelte-bt9yf6-3">
+            <div>
+                <h4 class="svelte-bt9yf6"></h4>
+            </div>
+            </header>
+
+        
+
+        <aside class="svelte-bt9yf6-2">
+        <div>
+            <h5 class="svelte-bt9yf6"></h5>
+        </div>
+        </aside>
+
+        <aside class="svelte-bt9yf6-2">
+            <div>
+                <h6 class="svelte-bt9yf6"></h6>
+            </div>
+        </aside>
+
+        <div id="GFG">
+
+        <script>
+
+// d3.zoom
+
+// QUESTION 2: I want the blue dot to be fixed in the center of the screen (no pan or move in the canvas, only zoom in and out). 
+//I've found this code (https://bl.ocks.org/mbostock/f2728977cc50761897f83323a8ea5000) I tried but I'm not able to implement mine, I think I have to fix the "translate".
+            
+            var header = - 69.5 - 48 // you can update this to pull the header size at load
+            
+            var svg = d3.select("#GFG")
+                .append("svg")
+                // .attr("width", 1920)
+                // .attr("height", 1080)
+                .attr("width", window.innerWidth)
+                .attr("height", window.innerHeight - header)
+                .call(d3.zoom() 
+                //add the final scale
+                .scaleExtent([1 / 2, 95])
+                .on("zoom", function () {
+                svg.attr("transform", d3.event.transform);
+                
+                var chk = d3.select("h3")
+                .text(function(d) {
+                        if (d3.event.transform.k >0 && d3.event.transform.k <=5) {return "ZL00"}
+                        else if (d3.event.transform.k >5 && d3.event.transform.k<=10) {return "ZL01"}
+                        else if (d3.event.transform.k >10 && d3.event.transform.k<=15) {return "ZL02"}
+                        else if (d3.event.transform.k >15 && d3.event.transform.k<=20) {return "ZL03"}
+                        else if (d3.event.transform.k >20 && d3.event.transform.k<=25) {return "ZL04"}
+                        else if (d3.event.transform.k >25 && d3.event.transform.k<=30) {return "ZL05"}
+                        else if (d3.event.transform.k >30 && d3.event.transform.k<=35) {return "ZL06"}
+                        else if (d3.event.transform.k >35 && d3.event.transform.k<=40) {return "ZL07"}
+                        else if (d3.event.transform.k >40 && d3.event.transform.k<=45) {return "ZL08"}
+                        else if (d3.event.transform.k >45 && d3.event.transform.k<=50) {return "ZL09"}
+                        else if (d3.event.transform.k >50 && d3.event.transform.k<=55) {return "ZL10"}
+                        else if (d3.event.transform.k >55 && d3.event.transform.k<=60) {return "ZL11"}
+                        else if (d3.event.transform.k >60 && d3.event.transform.k<=65) {return "ZL12"}
+                        else if (d3.event.transform.k >65 && d3.event.transform.k<=70) {return "ZL13"}
+                        else if (d3.event.transform.k >70 && d3.event.transform.k<=75) {return "ZL14"}
+                        else if (d3.event.transform.k >75 && d3.event.transform.k<=80) {return "ZL15"}
+                        else if (d3.event.transform.k >80 && d3.event.transform.k<=85) {return "ZL16"}
+                        else if (d3.event.transform.k >85 && d3.event.transform.k<=90) {return "ZL17"}
+                        else if (d3.event.transform.k >90 && d3.event.transform.k<=95) {return "ZL18"}
+                        ;})
+
+
+                var chk = d3.select("h2")
+                .text(function(d) {
+                        if (d3.event.transform.k >0 && d3.event.transform.k <=1) {return "ZOOM IN"}
+                        else if (d3.event.transform.k >1 && d3.event.transform.k<=5) {return "Created By: Lucia Rebolino, George Verghese, and Junling Zhuang"}
+                        else if (d3.event.transform.k >5 && d3.event.transform.k<=10) {return "Created By: Lucia Rebolino, George Verghese, and Junling Zhuang For: Jia Zhang’s Fall 2022 DataViz for Architecture, Urbanism and the Humanities course at the Columbia GSAPP"}
+                        else if (d3.event.transform.k >10 && d3.event.transform.k<=95) {return "Created By: Lucia Rebolino, George Verghese, and Junling Zhuang For: Jia Zhang’s Fall 2022 DataViz for Architecture, Urbanism and the Humanities course at the Columbia GSAPP"}
+            
+                        ;})
+
+
+
+                var chk = d3.select("h4")
+                .text(function(d) {
+                        if (d3.event.transform.k >0 && d3.event.transform.k <=5) {return ""}
+                        else if (d3.event.transform.k >5 && d3.event.transform.k<=10) {return ""}
+                        else if (d3.event.transform.k >10 && d3.event.transform.k<=95) {return "Source: Grootens, J. (2021). In Blind Maps and blue dots: The blurring of the producer-user divide in the production of visual information. Lars Müller Publishers"}
+
+                        ;})
+
+
+
+
+
+
+                        
+                var chk = d3.select("h5")
+                .text(function(d) {
+                    if (d3.event.transform.k >0 && d3.event.transform.k <=5) {return ""}
+                        else if (d3.event.transform.k >5 && d3.event.transform.k<=10) {return ""}
+                        else if (d3.event.transform.k >10 && d3.event.transform.k<=15) {return ""}
+                        else if (d3.event.transform.k >15 && d3.event.transform.k<=20) {return "Google maps is a dynamic, mutating representation of the world."}
+                        else if (d3.event.transform.k >20 && d3.event.transform.k<=25) {return "Google maps is a dynamic, mutating representation of the world. The map is based on a database with certain features and can be zoomed in or out for each of the nineteen zoom levels to render different maps."}
+                        else if (d3.event.transform.k >25 && d3.event.transform.k<=30) {return "Google maps is a dynamic, mutating representation of the world. The map is based on a database with certain features and can be zoomed in or out for each of the nineteen zoom levels to render different maps. Each of the zooms contains different information and is a unique map."}
+                        else if (d3.event.transform.k >30 && d3.event.transform.k<=35) {return "Google maps is a dynamic, mutating representation of the world. The map is based on a database with certain features and can be zoomed in or out for each of the nineteen zoom levels to render different maps. Each of the zooms contains different information and is a unique map. Throughout the zoom levels, the digital map changes in typology: from street map to road map to topographic map. "}
+                        else if (d3.event.transform.k >35 && d3.event.transform.k<=40) {return "Google maps is a dynamic, mutating representation of the world. The map is based on a database with certain features and can be zoomed in or out for each of the nineteen zoom levels to render different maps. Each of the zooms contains different information and is a unique map. Throughout the zoom levels, the digital map changes in typology: from street map to road map to topographic map.Comparing the french cartographer and theorist Jacques Bertin's (Sémiologie graphique, 1967) ideas with the design of Google Maps it’s possible to make a distinction between the content of a map, which he calls the information, and the container, the graphic system."}
+                        else if (d3.event.transform.k >40 && d3.event.transform.k<=95) {return "Google maps is a dynamic, mutating representation of the world. The map is based on a database with certain features and can be zoomed in or out for each of the nineteen zoom levels to render different maps. Each of the zooms contains different information and is a unique map. Throughout the zoom levels, the digital map changes in typology: from street map to road map to topographic map.Comparing the french cartographer and theorist Jacques Bertin's (Sémiologie graphique, 1967) ideas with the design of Google Maps it’s possible to make a distinction between the content of a map, which he calls the information, and the container, the graphic system. The number of components used in the graphic system depends on the number of elements the information constitutes."}
+                    
+                        ;})
+
+
+                var chk = d3.select("h6")
+                .text(function(d) {
+                    if (d3.event.transform.k >40 && d3.event.transform.k <=45) {return ""}
+                        else if (d3.event.transform.k >45 && d3.event.transform.k<=50) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances"}
+                        else if (d3.event.transform.k >50 && d3.event.transform.k<=55) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels."}
+                        else if (d3.event.transform.k >55 && d3.event.transform.k<=60) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix."}
+                        else if (d3.event.transform.k >60 && d3.event.transform.k<=65) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix. Google Maps API exposes the layers and symbols at each zoom level to create a database of all the cartographic information and their layer styles. "}
+                        else if (d3.event.transform.k >65 && d3.event.transform.k<=70) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix. Google Maps API exposes the layers and symbols at each zoom level to create a database of all the cartographic information and their layer styles. Does Google not offer a legend because it focuses on displaying “valuable” addresses rather than showing the landscape?"}
+                        else if (d3.event.transform.k >70 && d3.event.transform.k<=75) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix. Google Maps API exposes the layers and symbols at each zoom level to create a database of all the cartographic information and their layer styles. Does Google not offer a legend because it focuses on displaying “valuable” addresses rather than showing the landscape? The hierarchy between the layers is apparent from the visual strategies of the map design."}
+                        else if (d3.event.transform.k >75 && d3.event.transform.k<=80) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix. Google Maps API exposes the layers and symbols at each zoom level to create a database of all the cartographic information and their layer styles. Does Google not offer a legend because it focuses on displaying “valuable” addresses rather than showing the landscape? The hierarchy between the layers is apparent from the visual strategies of the map design. The topographic layer is rendered in pale versions of colours often used in maps: "}
+                        else if (d3.event.transform.k >80 && d3.event.transform.k<=85) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix. Google Maps API exposes the layers and symbols at each zoom level to create a database of all the cartographic information and their layer styles. Does Google not offer a legend because it focuses on displaying “valuable” addresses rather than showing the landscape? The hierarchy between the layers is apparent from the visual strategies of the map design. The topographic layer is rendered in pale versions of colours often used in maps:grey for the built environment, green for vegetation and blue for water."}
+                        else if (d3.event.transform.k >85 && d3.event.transform.k<=90) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix. Google Maps API exposes the layers and symbols at each zoom level to create a database of all the cartographic information and their layer styles. Does Google not offer a legend because it focuses on displaying “valuable” addresses rather than showing the landscape? The hierarchy between the layers is apparent from the visual strategies of the map design. The topographic layer is rendered in pale versions of colours often used in maps:grey for the built environment, green for vegetation and blue for water.The foreground layer, that is the names and pictograms of the information Google might intend to monetize, is shown in bright colours. "}
+                        else if (d3.event.transform.k >90 && d3.event.transform.k<=95) {return "From wayfinding to data analysis, Map applications are hyper-specific in their function and affordances. We consider the stickiness that Google Maps use to render the differen tiles, to expose the carefully crafted choice of layers, colors and symbols at different zoom levels. The methodology followed to build the interface was to use Google maps API to call the different zoom levels of the Mercator world map and enable them to be visualised within a feature matrix. Google Maps API exposes the layers and symbols at each zoom level to create a database of all the cartographic information and their layer styles. Does Google not offer a legend because it focuses on displaying “valuable” addresses rather than showing the landscape? The hierarchy between the layers is apparent from the visual strategies of the map design. The topographic layer is rendered in pale versions of colours often used in maps:grey for the built environment, green for vegetation and blue for water.The foreground layer, that is the names and pictograms of the information Google might intend to monetize, is shown in bright colours. This exploring interface aims to investigate and find the pattern of how diverse data sets show up differently at distinct zoom levels."}
+                    
+                        ;})
+
+
+
+                        
+                }))
+
+
+                
+
+
+                //below is disabling panning
+                .on("mousedown.zoom", null)
+                .on("touchstart.zoom", null)
+                .on("touchmove.zoom", null)
+                .on("touchend.zoom", null)
+                .append("g")
+
+            svg
+                .append("circle")
+                // .attr("cx", 500)
+                // .attr("cy", 500)
+                .attr("cx", window.innerWidth / 2)
+                .attr("cy", window.innerHeight/2)
+                .attr("r", 40)
+                .style ("fill", "#4285F4")
+                .style ("stroke", "#FFFFFF")
+                .style("stroke-width", 5)
+                
+
+        </script> 
+
+        
+
+<div class="footer">        
+<a href="project-page.html"><button class="flex-items">EXPLORE</button></a>
+</div>
+
+
+
+    </div>
+    </div>
+
+</div>
+
+</body> 
+</html> 
+</body>
+</html>

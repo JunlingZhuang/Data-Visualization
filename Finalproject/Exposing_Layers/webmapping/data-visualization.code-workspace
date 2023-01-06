@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../../../GitHub/data-visualization"
+		},
+		{
+			"path": "../../../../GitHub/JunlingZhuang.github.io"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../onlineOrder/Laioffer"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "webmapping"
+	}
+}
