@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>blank</title>
+		<script type="text/javascript" src="../d3.js"></script>
+		<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
+		<script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+		<style>
+			/*your css here*/
+			#map{
+				width:500px;
+				height:500px;
+			}
+		</style>
+		<script type="text/javascript" src="barchart.js"></script>
+		
+	</head>
+	
+	<body>
+		<div id = "map"></div>
+		<div id = "chart1"></div>
+		<div id = "chart2"></div>
+
+		
+
+
+<script>
+	
+	//draws a map from mapbox
+	mapboxgl.accessToken = 'pk.eyJ1IjoiampqaWlhMTIzIiwiYSI6ImNpbDQ0Z2s1OTN1N3R1eWtzNTVrd29lMDIifQ.gSWjNbBSpIFzDXU2X5YCiQ';
+	const map = new mapboxgl.Map({
+	container: 'map', // container ID
+	style: 'mapbox://styles/jjjiia123/ckvmekzmf39nz14o27lfiynwy', // custom style url from https://studio.mapbox.com/
+	center: [-73.978,40.711], // starting position
+	zoom: 14 // starting zoom
+	});
+
+//draws a barchart from hw
+//	barChart()
+	
+	
+//loads data and draws a scatterplot from hw
+
+	Promise.all([d3.csv("data/time_scale_data.csv"),d3.csv("data/income_dropout.csv")])
+	.then(function(data){
+		//drawDropoutChart(data[1])
+	})
+
+</script>
+
+		
+	</body>
+</html>
