@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction</title>
+    <title>Bluedot-Introduction</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="intro.css">
 </head>
@@ -21,7 +21,7 @@
             <div class="meta svelte-bt9yf6">
 <!--zoom level-->
 <!-- QUESTION 1: how can I connect the zoom class to the d3.zoom function?-->
-                <h3 class="zoom"> ZL00</h3>
+                <h3 class="zoom"> Try scrolling your mouse to zoom in</h3>
             </div>
             
             
@@ -78,32 +78,33 @@
                 
                 var chk = d3.select("h3")
                 .text(function(d) {
-                        if (d3.event.transform.k >0 && d3.event.transform.k <=5) {return "ZL00"}
-                        else if (d3.event.transform.k >5 && d3.event.transform.k<=10) {return "ZL01"}
-                        else if (d3.event.transform.k >10 && d3.event.transform.k<=15) {return "ZL02"}
-                        else if (d3.event.transform.k >15 && d3.event.transform.k<=20) {return "ZL03"}
-                        else if (d3.event.transform.k >20 && d3.event.transform.k<=25) {return "ZL04"}
-                        else if (d3.event.transform.k >25 && d3.event.transform.k<=30) {return "ZL05"}
-                        else if (d3.event.transform.k >30 && d3.event.transform.k<=35) {return "ZL06"}
-                        else if (d3.event.transform.k >35 && d3.event.transform.k<=40) {return "ZL07"}
-                        else if (d3.event.transform.k >40 && d3.event.transform.k<=45) {return "ZL08"}
-                        else if (d3.event.transform.k >45 && d3.event.transform.k<=50) {return "ZL09"}
-                        else if (d3.event.transform.k >50 && d3.event.transform.k<=55) {return "ZL10"}
-                        else if (d3.event.transform.k >55 && d3.event.transform.k<=60) {return "ZL11"}
-                        else if (d3.event.transform.k >60 && d3.event.transform.k<=65) {return "ZL12"}
-                        else if (d3.event.transform.k >65 && d3.event.transform.k<=70) {return "ZL13"}
-                        else if (d3.event.transform.k >70 && d3.event.transform.k<=75) {return "ZL14"}
-                        else if (d3.event.transform.k >75 && d3.event.transform.k<=80) {return "ZL15"}
-                        else if (d3.event.transform.k >80 && d3.event.transform.k<=85) {return "ZL16"}
-                        else if (d3.event.transform.k >85 && d3.event.transform.k<=90) {return "ZL17"}
-                        else if (d3.event.transform.k >90 && d3.event.transform.k<=95) {return "ZL18"}
+                        if (d3.event.transform.k >0 && d3.event.transform.k <=5) {return "Zoom Level 00"}
+                        else if (d3.event.transform.k >5 && d3.event.transform.k<=10) {return "Zoom Level 01"}
+                        else if (d3.event.transform.k >10 && d3.event.transform.k<=15) {return "Zoom Level 02"}
+                        else if (d3.event.transform.k >15 && d3.event.transform.k<=20) {return "Zoom Level 03"}
+                        else if (d3.event.transform.k >20 && d3.event.transform.k<=25) {return "Zoom Level 04"}
+                        else if (d3.event.transform.k >25 && d3.event.transform.k<=30) {return "Zoom Level 05"}
+                        else if (d3.event.transform.k >30 && d3.event.transform.k<=35) {return "Zoom Level 06"}
+                        else if (d3.event.transform.k >35 && d3.event.transform.k<=40) {return "Zoom Level 07"}
+                        else if (d3.event.transform.k >40 && d3.event.transform.k<=45) {return "Zoom Level 08"}
+                        else if (d3.event.transform.k >45 && d3.event.transform.k<=50) {return "Zoom Level 09"}
+                        else if (d3.event.transform.k >50 && d3.event.transform.k<=55) {return "Zoom Level 10"}
+                        else if (d3.event.transform.k >55 && d3.event.transform.k<=60) {return "Zoom Level 11"}
+                        else if (d3.event.transform.k >60 && d3.event.transform.k<=65) {return "Zoom Level 12"}
+                        else if (d3.event.transform.k >65 && d3.event.transform.k<=70) {return "Zoom Level 13"}
+                        else if (d3.event.transform.k >70 && d3.event.transform.k<=75) {return "Zoom Level 14"}
+                        else if (d3.event.transform.k >75 && d3.event.transform.k<=80) {return "Zoom Level 15"}
+                        else if (d3.event.transform.k >80 && d3.event.transform.k<=85) {return "Zoom Level 16"}
+                        else if (d3.event.transform.k >85 && d3.event.transform.k<=90) {return "Zoom Level 17"}
+                        else if (d3.event.transform.k >90 && d3.event.transform.k<=95) {return " Click on Explore"}
                         ;})
 
 
                 var chk = d3.select("h2")
                 .text(function(d) {
                         if (d3.event.transform.k >0 && d3.event.transform.k <=1) {return "ZOOM IN"}
-                        else if (d3.event.transform.k >1 && d3.event.transform.k<=5) {return "Created By: Lucia Rebolino, Junling Zhuang, and George Verghese For: Jia Zhang’s Fall 2022 DataViz for Architecture, Urbanism and the Humanities course at the Columbia GSAPP"}
+
+                        if (d3.event.transform.k >1 && d3.event.transform.k<=5) {return "Created By: Lucia Rebolino, Junling Zhuang, and George Verghese For: Jia Zhang’s Fall 2022 DataViz for Architecture, Urbanism and the Humanities course at the Columbia GSAPP"}
                         else if (d3.event.transform.k >5 && d3.event.transform.k<=10) {return "Created By: Lucia Rebolino, Junling Zhuang, and George Verghese For: Jia Zhang’s Fall 2022 DataViz for Architecture, Urbanism and the Humanities course at the Columbia GSAPP"}
                         else if (d3.event.transform.k >10 && d3.event.transform.k<=95) {return "Created By: Lucia Rebolino, Junling Zhuang, and George Verghese For: Jia Zhang’s Fall 2022 DataViz for Architecture, Urbanism and the Humanities course at the Columbia GSAPP"}
             
