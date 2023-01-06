@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>basic located</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
+    
+    
+<script type="text/javascript" src="../d3.js"></script>
+  
+    
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+</div>
+		<script type="text/javascript"> 
+			
+			//TODO:
+			//make into a function and reuse
+			//add a dataset called TLC_... and make some small multiples
+			
+			
+			//here is a basic pie chart
+            var w = 500
+            var h = 500
+       
+            var svg = d3.select("body")
+			.append("svg").attr("width",w).attr("height",h)
+            
+            
+        var pie = d3.pie();
+        var colors = ["#68b859","#cbcf49","#6c7c3f","#7fdf4a"]
+		
+		
+		
+		        //define the arc
+		        var arc = d3.arc().innerRadius(0).outerRadius(w/2)
+                
+				//draw arc as you would other d3 elements
+		        var arcs = svg.selectAll("arc")
+		            .data(pie([0,2,3,5,6,10,11,23]))
+		            .enter()
+		            .append("g")
+					//a arc is a kind of path, we are appending the path, and then defining it later
+		            .append("path")
+		            .attr("fill", function(d, i) {
+		            	return colors[i%colors.length]
+		            })
+					//this line defining d is very similar to how you would draw a line chart from last week
+		            .attr("d", arc)
+		            .attr("transform", "translate(" + w/2+ "," + h/2 + ")")
+					
+   
+
+</script>
+</body>
+</html>

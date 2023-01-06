@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../d3.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id ="barChart">
+        bar chart goes here
+
+
+    </div>
+    <!-- <div id = "popup">popup text</div> -->
+
+    <script type = "text/javascript">
+
+        var aBunchOfText = d3.select("body").append("div").attr("id","popup")
+        .attr("id","aBunchOfText")
+
+        aBunchOfText.append("p")
+        .attr("id","popup")
+        .html("popup text")
+
+        var data = []
+
+        for (var i = 0; i < 100; i++ ) {
+            var currentRandonNumber = Math.random() * 100
+            // console.log(i, currentRandonNmuber)
+            data.push(currentRandonNumber)
+        }
+        data = data.sort(function(a,b){
+            console.log(a,b)
+            return b - a;
+        })
+        console.log(data)
+
+        var w = 800;
+        var h = 500;
+        var p = 60;
+
+        var svg = d3.select("#barChart").append("svg")
+        .attr("width",w)
+        .attr("height",h)
+
+        var yScale = d3.scaleLinear()
+        .domain([0,100])
+        .range([0,h])
+
+        svg.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x",function(d,i){
+            //console.log(d,i)
+            return i * 5
+        })
+        .attr("y", function(d,i){
+            return h - yScale(100 - d)
+        })
+        .attr("width", function(){
+            return 4
+        })
+        .attr("height", function(d){
+            return yScale(100 - d)
+        })
+        .attr("tranform","translate("+p+")")
+
+
+    </script>
+</body>
+</html>

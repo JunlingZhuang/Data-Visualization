@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>basic located</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
+    
+    
+<script type="text/javascript" src="../d3.js"></script>
+  
+    
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+</div>
+		<script type="text/javascript"> 
+			
+			//add a dataset to this pie chart
+			//https://data.cityofnewyork.us/Transportation/TLC-New-Driver-Application-Status/dpec-ucu7/data
+			
+			Promise.all([d3.csv('TLC_New_Driver_Application_Status.csv')])
+			.then(function(data){
+				console.log(data)
+				
+		   var apps = data[0]
+				
+			//var counts = {};
+
+			// for(var i in apps){
+// 				var value = apps[i]["Status"]
+//
+// 				if(Object.keys(counts).indexOf(value)==-1){
+// 					counts[value]=1
+// 				}else{
+// 					counts[value]+=1
+// 				}
+// 			}		//
+			//
+			// console.log(counts)
+			// console.log(Object.keys(counts))
+			// console.log(Object.values(counts))
+			//
+			
+
+        var colors1 = ["#68b859","#cbcf49","#6c7c3f","#7fdf4a","gold"]
+		drawArc(1,100,"data1",apps,"Status",colors1)
+		drawArc(1,100,"data2",apps,"Drug Test",colors1)
+		drawArc(1,100,"data2",apps,"Medical Clearance Form",colors1)
+		drawArc(0,100,"data2",apps,"Defensive Driving",colors1)
+		
+		
+	})
+	
+	
+	function drawArc(inner,outer,className,apps,column,listOfColors){
+		
+		var dataset = {};
+
+		for(var i in apps){
+			var value = apps[i][column]
+			if(value!=undefined){
+			
+				if(Object.keys(dataset).indexOf(value)==-1){
+					dataset[value]=1
+				}else{
+					dataset[value]+=1
+				}
+			}
+		}
+		
+		
+			
+            var w = 500
+            var h = 500
+            var svg = d3.select("body")
+			.append("svg").attr("width",w).attr("height",h)
+			.append("g")
+	        .attr("transform", "translate(" + w/2+ "," + h/2 + ")")
+		
+			
+			
+        var pie = d3.pie();
+		
+		
+	        var arc = d3.arc().innerRadius(inner).outerRadius(outer)
+            
+	        var arcs = svg.selectAll("."+className)
+	            .data(pie(Object.values(dataset)))
+	            .enter()
+	            .append("g")
+	            .attr("class", className)
+	            .append("path")
+	            .attr("fill", function(d, i) {
+	            	return listOfColors[i%listOfColors.length]
+	            })
+	            .attr("d", arc)
+				
+				
+				//ADD SOME LABELS TO THE PIE!
+				//https://d3-graph-gallery.com/graph/pie_annotation.html
+	
+	
+			svg
+			  .selectAll('.slices')
+			  .data(pie(Object.values(dataset)))
+			  .enter()
+			  .append('text')
+			 .attr("class","slices")
+			  .text(function(d,i){ 
+				  console.log(Object.keys(dataset)[i])
+				  return Object.keys(dataset)[i]
+			  })
+			  .attr("transform", function(d,i) {
+				  console.log(arc.centroid(d))
+				  var x = arc.centroid(d)[0]*1.2
+				  var y = arc.centroid(d)[1]*1.2
+		  // pythagorean theorem for hypotenuse
+		          h = Math.sqrt(x*x + y*y);
+		      return "translate(" + (x/h * 100) +  ',' +
+		         (y/h * 100) +  ")"; 
+				 
+				  return "translate("+x+","+y+")"
+				  
+				   return "translate(" + arc.centroid(d) + ")";  })
+			  .style("text-anchor", "middle")
+			  .style("font-size", 17)
+			  
+	
+	}
+        
+   
+
+</script>
+</body>
+</html>
